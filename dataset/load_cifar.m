@@ -5,3 +5,7 @@ for k=1:5
     data = vertcat(data,A.data);
     labels = vertcat(labels,A.labels);
 end
+A = load('test_batch');
+test_data = A.data;
+test_labels = A.labels;
+clear A k;
