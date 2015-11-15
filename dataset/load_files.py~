@@ -1,0 +1,14 @@
+def unpickle(file):
+    import cPickle
+    fo = open(file, 'rb')
+    dict = cPickle.load(fo)
+    fo.close()
+    return dict
+
+file_prefix = 'data_batch_'
+file_suffix = '.mat'
+i =1
+for i in range(1,5):
+    file_name = file_prefix.concat(i).concat(file_suffix)
+    unpickle(file)
+    

@@ -1,7 +1,4 @@
-dataset/#data_batch_1.mat#
 *.mat
-dataset/load_files.py~
-dataset/rice.png
 drtoolbox.tar.gz
 dataset/readme.html
 drtoolbox/*
