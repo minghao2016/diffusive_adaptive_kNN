@@ -1,6 +1,5 @@
 load_cifar
 [mappedX,~] = compute_mapping(horzcat(labels,data), 'FDA', 9);
-[mappedTest,~] = compute_mapping(horzcat(test_labels,test_data,'FDA',9));
 [mappedTest,~] = compute_mapping(horzcat(test_labels,test_data),'FDA',9);
 [X1,X2,Y1,Y2] = dataSplit(mappedX,labels,1,2);
 X = vertcat(X1,X2);
