@@ -7,14 +7,17 @@ Y = vertcat(Y1,Y2);
 [testX1, testX2, testY1,testY2] = dataSplit(mappedTest,test_labels,1,2);
 test = vertcat(testX1,testX2);
 testY = vertcat(testY1,testY2);
-prediction = knnclassify(test,X,Y);
-accuracy = [];
+
+dN_accuracy = [];
+kNN_accuracy = [];
 for k=1:100
     dNprediction = deltaNRuleTest(mappedX,labels,test,testY,k);
-    accuracy = vertcat(accuracy, checkAccuracy(dNprediction,testY));
+    prediction = knnclassify(test,X,Y,k);
+    dN_accuracy = vertcat(dN_accuracy, checkAccuracy(dNprediction,testY));
+    kNN_accuracy = vertcat(kNN_accuracy, checkAccuracy(prediction,testY));
 end
 k =1:100;
-accuracy = accuracy(2:101,1);
-plot(k,accuracy);
+plot(k,dN_accuracy,k,kNN_accuracy);
 xlabel('zN');
 ylabel('accuracy');
+hold
