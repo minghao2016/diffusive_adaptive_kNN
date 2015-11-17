@@ -1,4 +1,4 @@
-function accuracy_array = deltaNRuleTest(training_data, training_label, test_data, test_label)
+function accuracy_array = deltaNRuleTest(training_data, training_label, test_data, test_label, zn_max)
 accuracy = 0;
 accuracy_array = [];
 max_accuracy_zn = 0;
@@ -9,9 +9,8 @@ max_accuracy_zn = 0;
 test_data = vertcat(test_x1, test_x2);
 test_label = vertcat(test_y1, test_y2);
 test_size = size(test_label, 1);
-for z = 1:2000
-    predict = zeros(test_size, 1);
-    accuracy = 0;
+for z = 1:zn_max
+    predict = zeros(test_size, 1);    
     success = 0;    
     for i=1:test_size
         predict(i) = deltaNRule(x1, x2, z, test_data(i,:));
