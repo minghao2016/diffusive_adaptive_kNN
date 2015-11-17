@@ -7,10 +7,10 @@ Y2 =[];
 for k = 1:N
     if y(k,1) == class1
         X1 = vertcat(X1,X(k,:));
-        Y1 = vertcat(Y1,1);
+        Y1 = vertcat(Y1,class1);
     elseif y(k,1) == class2
         X2 = vertcat(X2,X(k,:));
-        Y2 = vertcat(Y2,2);
+        Y2 = vertcat(Y2,class2);
     end
 end
     

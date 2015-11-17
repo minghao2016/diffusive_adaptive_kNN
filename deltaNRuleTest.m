@@ -1,12 +1,28 @@
-function predict = deltaNRuleTest(TrainingData, TrainingLabel, TestData, TestLabel, Zn)
-testSize = size(TestData,1);
-predict = zeros(testSize,1);
-success = 0;
-[X1, X2, Y1, Y2] = dataSplit(TrainingData, TrainingLabel, 1, 2);
-for i=1:testSize
-    predict(i) = deltaNRule(X1, X2, Zn, TestData(i, :));
-    if TestLabel(i) == predict(i, 1)
-        success = success + 1;
+function accuracy_array = deltaNRuleTest(training_data, training_label, test_data, test_label)
+accuracy = 0;
+accuracy_array = [];
+max_accuracy_zn = 0;
+[filtered_data,~] = compute_mapping(horzcat(training_label,training_data), 'FDA', 9);
+[filtered_test_data,~] = compute_mapping(horzcat(test_label,test_data),'FDA',9);
+[x1, x2, y1, y2] = dataSplit(filtered_data, training_label, 1, 2);
+[test_x1, test_x2, test_y1, test_y2] = dataSplit(filtered_test_data, test_label, 1, 2);
+test_data = vertcat(test_x1, test_x2);
+test_label = vertcat(test_y1, test_y2);
+test_size = size(test_label, 1);
+for z = 1:2000
+    predict = zeros(test_size, 1);
+    accuracy = 0;
+    success = 0;    
+    for i=1:test_size
+        predict(i) = deltaNRule(x1, x2, z, test_data(i,:));
+        if test_label(i, 1) == predict(i, 1)
+            success = success + 1;
+        end
+    end
+    zn_accuracy = success * 100 / test_size;
+    if accuracy < zn_accuracy
+        max_accuracy_zn = z
+        accuracy = zn_accuracy
+        accuracy_array = vertcat(accuracy_array, [accuracy]);
     end
 end
-accuracy = success * 100 / testSize;
