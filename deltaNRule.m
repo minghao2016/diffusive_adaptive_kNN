@@ -1,11 +1,11 @@
-function [ prediction ] = deltaNRule(X1, X2, zN, test)
+function [ prediction, k] = deltaNRule(X1, X2, zN, test)
 %deltaNRule Stops and classifies when DeltaN reaches zN
 %   Diffusion Decision Making for Adaptive k-Nearest Neighbor 
 %   Classification, Yung-Kyun Noh, Frank Chongwoo Park, Daniel D. Lee, 2012
     
     dist_X1 = sortedEuclideanDistance(X1, test);
     dist_X2 = sortedEuclideanDistance(X2, test);
-
+    k = 0;
     N1 = 1;
     N2 = 1;
     while true
@@ -23,8 +23,8 @@ function [ prediction ] = deltaNRule(X1, X2, zN, test)
             else
                 prediction = 2;
             end
+            k = N1 + N2;
             break;
         end
     end
 end
-
