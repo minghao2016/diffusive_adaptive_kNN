@@ -11,7 +11,7 @@ for k=1:100
     end
 end
 clear meas species k;
-[X1,X2] = dataSplit(X,Y);
+[X1,X2,Y1,Y2] = dataSplit(X,Y,1,2);
 gscatter(X(:,1),X(:,2),Y);
 test = [5.5 2;6 2.25;5 1.6 ;6 1.6 ;4.6 1.4 ;4 1.5 ];
 for i=1:size(test,1)
