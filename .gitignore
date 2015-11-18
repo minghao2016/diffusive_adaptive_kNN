@@ -3,3 +3,11 @@ drtoolbox.tar.gz
 dataset/readme.html
 drtoolbox/*
 knn.m
+license.txt
+Project-midterm-report-template.docx
+*.db
+FDA/FDA.m
+FDA/testScript.m
+FDA/README.pdf
+checkAccuracy.m
+fisheriris_testing.m
