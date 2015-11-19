@@ -13,7 +13,7 @@ for z = 1:zn_max
     predict = zeros(test_size, 1);    
     success = 0;    
     for i=1:test_size
-        predict(i) = deltaNRule(x1, x2, z, test_data(i,:), classes(1,1), classes(2,1));
+        predict(i) = deltaNRule(x1, x2, z, test_data(i,:), classes);
         if test_label(i, 1) == predict(i, 1)
             success = success + 1;
         end
