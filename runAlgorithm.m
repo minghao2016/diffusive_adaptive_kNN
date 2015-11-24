@@ -1,4 +1,4 @@
-function [accuracy,k] = dN(X1,X2,test,testY,zN, algorithm)
+function [accuracy,k] = runAlgorithm(X1,X2,test,testY,zN, algorithm)
 %dN Runs deltaNRule between two class data with a pre-determined zN.
 % 
 accuracy = 0;

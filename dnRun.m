@@ -43,7 +43,7 @@ for i=1:size(A,1)
         zN = log(alpha)/log(lambda2/lambda1);
     end
     zNs = vertcat(zNs,zN);
-    [accuracy,K] = dN(X1,X2,test,testY,zN,'DN');
+    [accuracy,K] = runAlgorithm(X1,X2,test,testY,zN,'DN');
     dnAccuracy = horzcat(dnAccuracy, accuracy);
     %k = horzcat(k,K);
     A(i,:)

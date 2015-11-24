@@ -14,16 +14,18 @@ for i=0:8
         end
     end
 end
-for i=1:size(A,1)
-    [X1,X2,Y1,Y2] = dataSplit(mappedX,labels,A(i,1),A(i,2));
-    X = vertcat(X1,X2);
-    Y = vertcat(Y1,Y2);
-    [testX1, testX2, testY1,testY2] = dataSplit(mappedTest,test_labels,A(i,1),A(i,2));
-    test = vertcat(testX1,testX2);
-    testY = vertcat(testY1,testY2);
+for zN =0.5:0.05:0.7
+    for i=1:size(A,1)
+        [X1,X2,Y1,Y2] = dataSplit(mappedX,labels,A(i,1),A(i,2));
+        X = vertcat(X1,X2);
+        Y = vertcat(Y1,Y2);
+        [testX1, testX2, testY1,testY2] = dataSplit(mappedTest,test_labels,A(i,1),A(i,2));
+        test = vertcat(testX1,testX2);
+        testY = vertcat(testY1,testY2);
 
-    [accuracy,K] = dN(X1,X2,test,testY,0.6,'PN');
-    dnAccuracy = horzcat(dnAccuracy, accuracy);
-    %k = horzcat(k,K);
-    A(i,:)  
+        [accuracy,K] = runAlgorithm(X1,X2,test,testY,zN,'PN');
+        dnAccuracy = horzcat(dnAccuracy, accuracy);
+        %k = horzcat(k,K);
+        A(i,:)  
+    end
 end
