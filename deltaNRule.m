@@ -1,4 +1,4 @@
-function [ prediction, k ] = deltaNRule(X1, X2, zN, test)
+function [ prediction, k ] = deltaNRule(X1, X2, zN, test, classes)
 %deltaNRule Classify when DeltaN reaches zN
 %   Adaptive rule for nearest neighbour classification.
 %   X1, X2 - training data for class1 and class2 respectively
@@ -13,6 +13,7 @@ function [ prediction, k ] = deltaNRule(X1, X2, zN, test)
     N1 = 1;
     N2 = 1;
     
+   
     while true
         %find the nearer neighbor and include more of nearer class
         if(dist_X1(N1, 1) > dist_X2(N2, 1))
@@ -29,9 +30,9 @@ function [ prediction, k ] = deltaNRule(X1, X2, zN, test)
         %check if evidence reached confidence level and classify
         if delN >= zN || N1>size(dist_X1,1) || N2>size(dist_X2,1)            
             if N1 > N2
-                prediction = 1;
+                prediction = classes(1,1);
             else
-                prediction = 2;
+                prediction = classes(2,1);
             end
             break;
         end
