@@ -10,3 +10,9 @@ FDA/testScript.m
 FDA/README.pdf
 checkAccuracy.m
 fisheriris_testing.m
+alpha-2.our-rule.jpg
+older_scripts/*
+results/*
+*.docx
+precomputedistances.m
+Project-midterm-report-template.docx
