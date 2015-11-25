@@ -3,7 +3,7 @@ function accuracy_array = deltaVRuleTest(training_data, training_label, zv_max)
 
 accuracy_array = [];
 [filtered_data,~] = compute_mapping(horzcat(training_label,training_data), 'FDA', 9);
-%[filtered_test_data,~] = compute_mapping(horzcat(test_label,test_data),'FDA',9);
+
 for class1 = 0:9
     for class2 = class1+1 : 9
         accuracy = 0;
@@ -29,7 +29,8 @@ for class1 = 0:9
         test_label = vertcat(test_y1, test_y2);
         test_size = size(test_label, 1);
 
-        for z = 0.0001:0.0001:zv_max
+        for z = 0.0001:0.001:zv_max
+            z
             predict = zeros(test_size, 1);
             success = 0;
             for i=1:test_size
