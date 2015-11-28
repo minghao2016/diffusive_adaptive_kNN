@@ -23,7 +23,8 @@ for i=0:9
     lambda1 = estimateRateParameter(X,mean(X));
     lambdas = vertcat(lambdas,lambda1);
 end
-alpha =2;
+%alpha = 1.0852;
+alpha = 1.2;
 zNs = [];
 for i=1:size(A,1)
     [X1,X2,Y1,Y2] = dataSplit(mappedX,labels,A(i,1),A(i,2));
@@ -34,17 +35,17 @@ for i=1:size(A,1)
     testY = vertcat(testY1,testY2);
     lambda1 = lambdas(A(i,1)+1);
     lambda2 = lambdas(A(i,2)+1);
-    %if abs(lambda1-lambda2) < 1
-    %    alpha = 1.0997
-    %end
+    
+    
+    
     if lambda1>lambda2
-        zN = log(alpha)/log(lambda1/lambda2);
+        zN = log(alpha)/(lambda1-lambda2);
     else
-        zN = log(alpha)/log(lambda2/lambda1);
+        zN = log(alpha)/(lambda2-lambda1);
     end
     zNs = vertcat(zNs,zN);
-    [accuracy,K] = runAlgorithm(X1,X2,test,testY,zN,'DN');
+    [accuracy,K] = runAlgorithm(X1,X2,test,testY,zN,'DV');
     dnAccuracy = horzcat(dnAccuracy, accuracy);
-    %k = horzcat(k,K);
+    k = horzcat(k,mean(K));
     A(i,:)
 end

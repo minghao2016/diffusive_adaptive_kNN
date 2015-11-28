@@ -11,24 +11,23 @@ success = 0;
 switch algorithm
     case 'DN'
         f = @deltaNRule;
-        
     case 'PN'
         f = @pNRule;
+    case 'newDN'
+        f = @newDeltaNRule
+    case 'DV'
+        f = @deltaVRule
 end
 
 for i=1:test_size
-    %[i]
-    %[predict(i),K] = newDeltaNRule(X1, X2, zN, test(i,:),unique(testY));
-    %[predict(i),K] = deltaNRule(X1, X2, zN, test(i,:),unique(testY));
-    %[predict(i),K] = pNRule(X1,X2,zN,test(i,:),unique(testY));
     [predict(i),K] = f(X1,X2,zN,test(i,:),unique(testY));
-    k_hat = vertcat(k_hat,K);
+    %k_hat = vertcat(k_hat,K);
     if testY(i, 1) == predict(i, 1)
         success = success + 1;
     end
 end
-accuracy = success/test_size;
-k=k_hat;
+accuracy = success*100/test_size;
+%k=k_hat;
 
 end
 

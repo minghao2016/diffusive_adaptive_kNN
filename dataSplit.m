@@ -1,4 +1,6 @@
 function [X1,X2,Y1, Y2] = dataSplit( X, y, class1, class2)
+%dataSplit  filter data(X) and labels(y) into two classes(class1,class2)
+
 N = size(X,1);
 X1 = [];
 X2 = [];

@@ -1,5 +1,5 @@
 function [ prediction, k ] = deltaNRule(X1, X2, zN, test, classes)
-%deltaNRule Classify when DeltaN reaches zN
+%deltaNRule Classify when delta-N reaches zN
 %   Adaptive rule for nearest neighbour classification.
 %   X1, X2 - training data for class1 and class2 respectively
 %   test - test sample

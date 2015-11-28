@@ -1,7 +1,7 @@
 function [ lambda ] = estimateRateParameter( X, t)
 %estimateRateParameter Estimates the rate parameter of appearance of
-%nearest neighbors of one class data.
-
+%                       nearest neighbors of class data(X) modeling it as 
+%                       a Poisson distribution.
 
 lambda = 0;
 poisson_N = [];
