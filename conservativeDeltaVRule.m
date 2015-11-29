@@ -1,6 +1,5 @@
-function [ prediction, N ] = deltaVRule(X1, X2, zV, test, classes)
-%   deltaVRule Classify when DeltaV reaches zV
-
+function [ prediction, N ] = conservativeDeltaVRule(X1, X2, zV, test, classes)
+%   conservativeDeltaVRule Classify after an iteration of DeltaV reaching zV
 %   Adaptive rule for nearest neighbour classification.
 %   X1, X2 - training data for class1 and class2 respectively
 %   test - test sample
@@ -16,9 +15,10 @@ function [ prediction, N ] = deltaVRule(X1, X2, zV, test, classes)
     while true
         %find the difference in distance for the Nth closest point in both classes                
         delV = abs(dist_X1(N, 1) - dist_X2(N, 1));
+        
         %check if evidence reached confidence level and classify
         if delV >= zV || N >= size(dist_X1,1) || N >= size(dist_X2,1)            
-            if dist_X1(N, 1) < dist_X2(N, 1)
+            if dist_X1(min([N+1, size(dist_X1,1)]), 1) < dist_X2(min([N+1, size(dist_X2,1)]), 1) 
                 prediction = classes(1,1);
             else
                 prediction = classes(2,1);
