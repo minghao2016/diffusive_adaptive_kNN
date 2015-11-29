@@ -1,4 +1,4 @@
-clear;
+%clear;
 load filtered_data;
 mappedTest = mappedX(40001:50000,:);
 test_labels = labels(40001:50000,:);

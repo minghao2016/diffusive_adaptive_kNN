@@ -14,20 +14,20 @@ switch algorithm
     case 'PN'
         f = @pNRule;
     case 'newDN'
-        f = @newDeltaNRule
+        f = @newDeltaNRule;
     case 'DV'
-        f = @deltaVRule
+        f = @deltaVRule;
 end
 
 for i=1:test_size
     [predict(i),K] = f(X1,X2,zN,test(i,:),unique(testY));
-    %k_hat = vertcat(k_hat,K);
+    k_hat = vertcat(k_hat,mean(K));
     if testY(i, 1) == predict(i, 1)
         success = success + 1;
     end
 end
 accuracy = success*100/test_size;
-%k=k_hat;
+k=mean(k_hat);
 
 end
 
