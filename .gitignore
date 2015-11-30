@@ -5,3 +5,6 @@ drtoolbox/*
 *.db
 FDA/*
 un_git_code/*
+DV-results.xlsx
+*.asv
+~$DV-results.xlsx

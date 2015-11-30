@@ -1,5 +1,5 @@
 %filtered_load
-clear;
+%clear;
 load filtered_data;
 mappedTest = mappedX(40001:50000,:);
 test_labels = labels(40001:50000,:);
@@ -28,7 +28,8 @@ alpha = 1.01:0.01:1.2;
 kprme = reshape(k,20,45);
 k = (mean(kprme,2));
 kalpha = horzcat(k,a);
-plot(sorted_kalpha(1,:),sorted_kalpha(2,:));
+sorted_kalpha = sort(kalpha);
+plot(sorted_kalpha(:,1),sorted_kalpha(:,2));
 xlabel('Average nearest no of neighbours');
 ylabel('Accuracy');
 
