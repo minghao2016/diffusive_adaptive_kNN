@@ -17,6 +17,8 @@ switch algorithm
         f = @newDeltaNRule;
     case 'DV'
         f = @deltaVRule;
+    case 'CDV'
+        f = @conservativeDeltaVRule;
 end
 
 for i=1:test_size

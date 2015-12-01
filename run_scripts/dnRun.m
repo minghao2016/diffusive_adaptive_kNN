@@ -18,11 +18,13 @@ end
 
 k=[];
 alpha = 1.01:0.01:1.2;
-[a,k] = runForAllClassPairs(A,mappedX,labels,mappedTest,test_labels,alpha,'DN');
-kprme = reshape(k,20,45);
+%[a,k] = runForAllClassPairs(A,mappedX,labels,mappedTest,test_labels,alpha,'DN');
+[a,k] = runForAllClassPairs(A,mappedX,labels,mappedTest,test_labels,alpha,'DV');
+%[a,k] = runForAllClassPairs(A,mappedX,labels,mappedTest,test_labels,alpha,'CDV');
+kprme = reshape(k,size(alpha,2),size(A,1));
 k = (mean(kprme,2));
 kalpha = horzcat(k,a);
 sorted_kalpha = sort(kalpha);
 plot(sorted_kalpha(:,1),sorted_kalpha(:,2));
-xlabel('Average nearest no of neighbours');
-ylabel('Accuracy');
+%xlabel('Average nearest no of neighbours');
+%ylabel('Accuracy');

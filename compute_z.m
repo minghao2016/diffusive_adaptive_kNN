@@ -6,12 +6,14 @@ switch algorithm
         else
             z = log(alpha)/log(lambda2/lambda1);
         end
-    case 'DV'
+    otherwise
         if lambda1>lambda2
             z = log(alpha)/(lambda1-lambda2);
         else
             z = log(alpha)/(lambda2-lambda1);
         end
+    
+        
 end
 end
 

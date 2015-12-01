@@ -30,25 +30,26 @@ function [ prediction, k ] = pNRule(X1, X2, zN, test, classes)
         
         % pN = (12)
         L =N1+N2+1;
-        K1_1 = ( evalin(symengine,['1/(2^(',int2str(L),'))']) );
-        K1_2=[];
-        K2_2=[];
-        for i=0:N1
-
-            K1_2 = vertcat(K1_2, evalin(symengine,['binomial(',int2str(L),',',int2str(i),')']));
+        if L < 1024
+            K1_1 = 1/(2^(L));
+            K1_2=[];
+            K2_2=[];
+            for i=0:N1
+                K1_2 = vertcat(K1_2,nchoosek(L,i));
+            end
+            for i=0:N2
+                K2_2 = vertcat(K2_2,nchoosek(L,i));
+            end
+            pn12 = K1_1*sum(K1_2);
+            pn21 = K1_1*sum(K2_2);
+        else
+            [pn12,pn21] = compute_PN(L,N1,N2);
         end
-        for i=0:N2
-            K2_2 = vertcat(K2_2, evalin(symengine,['binomial(',int2str(L),',',int2str(i),')']));
-        end
-        PN1_2 = K1_1*sum(K1_2);
-        PN2_1 = K1_1*sum(K2_2);
-        pn12 = double(PN1_2);
-        pn22 = double(PN2_1);
         %[PN1_2 PN2_1]
         %[N1 N2]
         %check if evidence reached confidence level and classify
-        if max(pn12,pn22) >= zN || N1>size(dist_X1,1) || N2>size(dist_X2,1)            
-            if pn12 > pn22
+        if max(pn12,pn21) >= zN || N1>size(dist_X1,1) || N2>size(dist_X2,1)            
+            if pn12 > pn21
                 prediction = classes(1,1);
             else
                 prediction = classes(2,1);
