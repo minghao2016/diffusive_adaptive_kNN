@@ -5,16 +5,16 @@ function [ prediction, k ] = deltaNRule(X1, X2, zN, test, classes)
 %   test - test sample
 %   zN - confidence level
     
-    %compute distance to the two classes
-    dist_X1 = sortedEuclideanDistance(X1, test);
-    dist_X2 = sortedEuclideanDistance(X2, test);
+        %compute distance to the two classes
+        dist_X1 = sortedEuclideanDistance(X1, test);
+        dist_X2 = sortedEuclideanDistance(X2, test);
 
-    %initially take one neighbour to each class
-    N1 = 1;
-    N2 = 1;
-    
-   
-    while true
+        %initially take one neighbour to each class
+        N1 = 1;
+        N2 = 1;
+
+
+        while true
         %find the nearer neighbor and include more of nearer class
         if(dist_X1(N1, 1) > dist_X2(N2, 1))
             N2 = N2+1;

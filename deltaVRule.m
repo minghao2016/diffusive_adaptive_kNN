@@ -27,6 +27,8 @@ function [ prediction, N ] = deltaVRule(X1, X2, zV, test, classes)
         end
         
         N = N+1;
+   
     end
+    N= 2*N;
 end
 

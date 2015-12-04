@@ -17,7 +17,7 @@ for i=0:8
 end
 k=[];
 mean_accuracy =[];
-for pn=0.78:0.01:0.78
+for pn=0.6:0.01:0.7
     classpairs_Accuracy = [];
     for i=1:size(A,1)
         %[X1,X2,Y1,Y2] = dataSplit(mappedX,labels,A(i,1),A(i,2));
