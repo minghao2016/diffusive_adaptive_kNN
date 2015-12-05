@@ -20,13 +20,10 @@ switch algorithm
     case 'CDV'
         f = @conservativeDeltaVRule;
     case 'PV'
-        f = @pVRule;
+        f= @pVRule;
 end
 
 for i=1:test_size
-    if mod(i,1000) == 0
-        i
-    end
     [predict(i),K] = f(X1,X2,zN,test(i,:),unique(testY));
     k_hat = vertcat(k_hat,mean(K));
     if testY(i, 1) == predict(i, 1)
