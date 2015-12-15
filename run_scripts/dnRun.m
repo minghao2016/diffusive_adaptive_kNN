@@ -1,10 +1,4 @@
-%filtered_load
-%clear;
 load filtered_data;
-%mappedTest = mappedX(40001:50000,:);
-%test_labels = labels(40001:50000,:);
-%mappedX = mappedX(1:40000,:);
-%labels = labels(1:40000,:);
 
 %code from here runs delta N rule.
 A=[];
@@ -29,3 +23,27 @@ alpha = 1.01:0.01:1.2;
 % plot(sorted_kalpha(:,1),sorted_kalpha(:,2));
 % xlabel('Average nearest no of neighbours');
 % ylabel('Accuracy');
+kprme1 = reshape(k1,size(A,1),10)';
+k1 = (mean(kprme1,2));
+kalpha1 = horzcat(k1,a1);
+sorted_kalpha1 = sort(kalpha1);
+
+kprme2 = reshape(k2,size(A,1),20)';
+k2 = (mean(kprme2,2));
+kalpha2 = horzcat(k2,a2);
+sorted_kalpha2 = sort(kalpha2);
+
+kprme3 = reshape(k3,size(A,1),20)';
+k3 = (mean(kprme3,2));
+kalpha3 = horzcat(k3,a3);
+sorted_kalpha3 = sort(kalpha3);
+
+kprme4 = reshape(k,size(A,1),6)';
+k4 = (mean(kprme4,2));
+kalpha4 = horzcat(k4,mean_accuracy);
+sorted_kalpha4 = sort(kalpha4);
+
+kprme5 = reshape(k,size(A,1),5)';
+k5 = (mean(kprme5,2));
+kalpha5 = horzcat(k5,mean_accuracy);
+sorted_kalpha5 = sort(kalpha5);
